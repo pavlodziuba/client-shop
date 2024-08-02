@@ -30,12 +30,8 @@ const Review = ({currentDeviceId,allRatings}) => {
     return (
         <Row className="d-flex flex-column m-3">
             <h2>Отзывы</h2>
-                <Row className="d-flex align-items-center justify-content-center mt-4">
                     {user.isAuth ?
-                            <div className='w-auto'>
-                                <Button variant={"outline-light"} onClick={() => navigate(LOGIN_ROUTE)}>Авторизация</Button>   
-                            </div>  
-                        :
+                        <Row className="d-flex align-items-center justify-content-center mt-4">
                             <div className='w-auto'>
                                 <Button
                                     variant={"outline-dark"} 
@@ -45,9 +41,15 @@ const Review = ({currentDeviceId,allRatings}) => {
                                     Оставить отзыв
                                 </Button> 
                                 <CreateRewiew show={rewiewCreateVisible} onHide={()=> setRewiewCreateVisible(false)} userId={user.userId} deviceId={currentDeviceId}/>  
-                            </div>
-                    }        
-                </Row>
+                            </div>      
+                        </Row>
+                        :
+                        <Row className="d-flex align-items-center justify-content-center mt-4">
+                            <div className='w-auto'>
+                                <Button variant={"outline-light"} onClick={() => navigate(LOGIN_ROUTE)}>Авторизация</Button>   
+                            </div>  
+                        </Row>
+                    }
                     <EditRewiew 
                         show={rewiewEditVisible} 
                         onHide={()=> {setRewiewEditVisible(false)}} 
