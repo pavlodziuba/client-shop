@@ -41,7 +41,11 @@ const Review = ({currentDeviceId,allRatings}) => {
                             >
                                 Оставить отзыв
                             </Button> 
-                            <CreateRewiew show={rewiewCreateVisible} onHide={()=> setRewiewCreateVisible(false)} userId={user.userId} deviceId={currentDeviceId}/>  
+                            {user.isAuth ?
+                                <CreateRewiew show={rewiewCreateVisible} onHide={()=> setRewiewCreateVisible(false)} userId={user.userId} deviceId={currentDeviceId}/>  
+                            :
+                                <Button variant={"outline-light"} onClick={() => navigate(LOGIN_ROUTE)}>Авторизация</Button>    
+                            }
                         </div>
                     }           
                     
