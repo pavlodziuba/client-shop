@@ -91,6 +91,7 @@ const CreateRewiew = ({show, onHide,userId,deviceId}) => {
                 </ul>  
             </div>   
             <Form.Control 
+                maxLength = "200"
                 value={message}
                 onChange={e =>  setMessage(e.target.value)}
                 placeholder={"Напишите отзыв"}
