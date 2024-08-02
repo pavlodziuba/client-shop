@@ -7,8 +7,6 @@ import DeleteRewiew from '../models/DeleteRewiew';
 import star from '../../assets/Star2.png'
 import trash_can from '../../assets/trash_can.png'
 import './Review.css'
-import { LOGIN_ROUTE} from '../../utils/consts';
-import { useNavigate } from 'react-router-dom';
 
 const Review = ({currentDeviceId,allRatings}) => {
     const {user} = useContext(Context)
@@ -17,7 +15,6 @@ const Review = ({currentDeviceId,allRatings}) => {
     const [rewiewCreateVisible, setRewiewCreateVisible] = useState(false)
     const [rewiewDeleteVisible, setRewiewDeleteVisible] = useState(false)
     const [curentUserRating, setCurentUserRating] = useState(0)
-    const navigate = useNavigate();
 
     const raiting = [0,1,2,3,4]
 
@@ -30,26 +27,25 @@ const Review = ({currentDeviceId,allRatings}) => {
     return (
         <Row className="d-flex flex-column m-3">
             <h2>Отзывы</h2>
-                    {user.isAuth ?
-                        <Row className="d-flex align-items-center justify-content-center mt-4">
-                            <div className='w-auto'>
-                                <Button
-                                    variant={"outline-dark"} 
-                                    className="mt-3 p-3"
-                                    onClick={()=> setRewiewCreateVisible(true)}
-                                >
-                                    Оставить отзыв2
-                                </Button> 
-                                <CreateRewiew show={rewiewCreateVisible} onHide={()=> setRewiewCreateVisible(false)} userId={user.userId} deviceId={currentDeviceId}/>  
-                            </div>      
-                        </Row>
+                <Row className="d-flex align-items-center justify-content-center mt-4">
+                    {   
+                    allRatings.some(info => info.userId == user.userId & info.deviceId == currentDeviceId) ?
+                        <>
+                        </>   
                         :
-                        <Row className="d-flex align-items-center justify-content-center mt-4">
-                            <div className='w-auto'>
-                                <Button variant={"outline-light"} onClick={() => navigate(LOGIN_ROUTE)}>Авторизация</Button>   
-                            </div>  
-                        </Row>
-                    }
+                        <div className='w-auto'>
+                            <Button
+                                variant={"outline-dark"} 
+                                className="mt-3 p-3"
+                                onClick={()=> setRewiewCreateVisible(true)}
+                            >
+                                Оставить отзыв2
+                            </Button> 
+                            <CreateRewiew show={rewiewCreateVisible} onHide={()=> setRewiewCreateVisible(false)} userId={user.userId} deviceId={currentDeviceId}/>  
+                        </div>
+                    }           
+                    
+                </Row>
                     <EditRewiew 
                         show={rewiewEditVisible} 
                         onHide={()=> {setRewiewEditVisible(false)}} 
@@ -235,7 +231,7 @@ const Review = ({currentDeviceId,allRatings}) => {
                                     </div>
                                 </div>
                                 <div className="d-flex  flex-column">
-                                    <div className='p-1' style={{fontSize:14, wordWrap: 'break-word', whiteSpace: 'pre-wrap'}}>
+                                    <div className='p-1' style={{fontSize:14}}>
                                             {info.message}
                                     </div>
                                 </div>
