@@ -92,7 +92,7 @@ const EditRewiew = observer(({show, onHide,userId,deviceId,curentUserRating}) =>
                 </ul>  
             </div>              
             <Form.Control 
-                maxLength={255}
+                maxLength={254}
                 value={message}
                 onChange={e =>  setMessage(e.target.value)}
                 placeholder={"Измните отзыв"}
