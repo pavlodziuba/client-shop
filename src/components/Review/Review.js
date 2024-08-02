@@ -32,6 +32,9 @@ const Review = ({currentDeviceId,allRatings}) => {
             <h2>Отзывы</h2>
                 <Row className="d-flex align-items-center justify-content-center mt-4">
                     {user.isAuth ?
+                            <Button variant={"outline-light"} onClick={() => navigate(LOGIN_ROUTE)}>Авторизация</Button>   
+                            
+                        :
                             <div className='w-auto'>
                                 <Button
                                     variant={"outline-dark"} 
@@ -42,8 +45,6 @@ const Review = ({currentDeviceId,allRatings}) => {
                                 </Button> 
                                 <CreateRewiew show={rewiewCreateVisible} onHide={()=> setRewiewCreateVisible(false)} userId={user.userId} deviceId={currentDeviceId}/>  
                             </div>
-                        :
-                            <Button variant={"outline-light"} onClick={() => navigate(LOGIN_ROUTE)}>Авторизация</Button>    
                     }        
                     
                 </Row>
