@@ -8,6 +8,7 @@ import star from '../../assets/Star2.png'
 import trash_can from '../../assets/trash_can.png'
 import './Review.css'
 import { LOGIN_ROUTE} from '../../utils/consts';
+import { useNavigate } from 'react-router-dom';
 
 const Review = ({currentDeviceId,allRatings}) => {
     const {user} = useContext(Context)
@@ -30,26 +31,20 @@ const Review = ({currentDeviceId,allRatings}) => {
         <Row className="d-flex flex-column m-3">
             <h2>Отзывы</h2>
                 <Row className="d-flex align-items-center justify-content-center mt-4">
-                    {   
-                    allRatings.some(info => info.userId == user.userId & info.deviceId == currentDeviceId) ?
-                        <>
-                        </>   
-                        :
-                        <div className='w-auto'>
-                            <Button
-                                variant={"outline-dark"} 
-                                className="mt-3 p-3"
-                                onClick={()=> setRewiewCreateVisible(true)}
-                            >
-                                Оставить отзыв
-                            </Button> 
-                            {user.isAuth ?
+                    {user.isAuth ?
+                            <div className='w-auto'>
+                                <Button
+                                    variant={"outline-dark"} 
+                                    className="mt-3 p-3"
+                                    onClick={()=> setRewiewCreateVisible(true)}
+                                >
+                                    Оставить отзыв
+                                </Button> 
                                 <CreateRewiew show={rewiewCreateVisible} onHide={()=> setRewiewCreateVisible(false)} userId={user.userId} deviceId={currentDeviceId}/>  
-                            :
-                                <Button variant={"outline-light"} onClick={() => navigate(LOGIN_ROUTE)}>Авторизация</Button>    
-                            }
-                        </div>
-                    }           
+                            </div>
+                        :
+                            <Button variant={"outline-light"} onClick={() => navigate(LOGIN_ROUTE)}>Авторизация</Button>    
+                    }        
                     
                 </Row>
                     <EditRewiew 
