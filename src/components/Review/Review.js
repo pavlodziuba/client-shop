@@ -7,6 +7,7 @@ import DeleteRewiew from '../models/DeleteRewiew';
 import star from '../../assets/Star2.png'
 import trash_can from '../../assets/trash_can.png'
 import './Review.css'
+import { LOGIN_ROUTE} from '../../utils/consts';
 
 const Review = ({currentDeviceId,allRatings}) => {
     const {user} = useContext(Context)
@@ -15,6 +16,7 @@ const Review = ({currentDeviceId,allRatings}) => {
     const [rewiewCreateVisible, setRewiewCreateVisible] = useState(false)
     const [rewiewDeleteVisible, setRewiewDeleteVisible] = useState(false)
     const [curentUserRating, setCurentUserRating] = useState(0)
+    const navigate = useNavigate();
 
     const raiting = [0,1,2,3,4]
 
