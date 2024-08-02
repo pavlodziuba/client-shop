@@ -28,23 +28,29 @@ const Review = ({currentDeviceId,allRatings}) => {
         <Row className="d-flex flex-column m-3">
             <h2>Отзывы</h2>
                 <Row className="d-flex align-items-center justify-content-center mt-4">
-                    {   
-                    allRatings.some(info => info.userId == user.userId & info.deviceId == currentDeviceId) ?
-                        <>
-                        </>   
-                        :
-                        <div className='w-auto'>
-                            <Button
-                                variant={"outline-dark"} 
-                                className="mt-3 p-3"
-                                onClick={()=> setRewiewCreateVisible(true)}
-                            >
-                                Оставить отзыв2
-                            </Button> 
-                            <CreateRewiew show={rewiewCreateVisible} onHide={()=> setRewiewCreateVisible(false)} userId={user.userId} deviceId={currentDeviceId}/>  
-                        </div>
-                    }           
-                    
+                        {user.isAuth ?
+                            <div className='w-auto'>
+                                <Button
+                                    variant={"outline-dark"} 
+                                    className="mt-3 p-3"
+                                    onClick={()=> setRewiewCreateVisible(true)}
+                                >
+                                    Оставить отзыв
+                                </Button> 
+                                <CreateRewiew show={rewiewCreateVisible} onHide={()=> setRewiewCreateVisible(false)} userId={user.userId} deviceId={currentDeviceId}/>  
+                            </div>
+                            :
+                            <div className='w-auto'>
+                                <Button
+                                    variant={"outline-dark"} 
+                                    className="mt-3 p-3"
+                                    onClick={()=> setRewiewCreateVisible(true)}
+                                >
+                                    Оставить отзыв not auth
+                                </Button> 
+                                <CreateRewiew show={rewiewCreateVisible} onHide={()=> setRewiewCreateVisible(false)} userId={user.userId} deviceId={currentDeviceId}/>  
+                            </div>
+                        }
                 </Row>
                     <EditRewiew 
                         show={rewiewEditVisible} 
