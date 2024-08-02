@@ -1,6 +1,7 @@
 import React, {useContext,useEffect,useState} from 'react';
 import {Context} from "../../index";
 import { Image,Row,Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import CreateRewiew from '../models/CreateRewiew';
 import EditRewiew from '../models/EditRewiew';
 import DeleteRewiew from '../models/DeleteRewiew';
@@ -15,6 +16,7 @@ const Review = ({currentDeviceId,allRatings}) => {
     const [rewiewCreateVisible, setRewiewCreateVisible] = useState(false)
     const [rewiewDeleteVisible, setRewiewDeleteVisible] = useState(false)
     const [curentUserRating, setCurentUserRating] = useState(0)
+    const navigate = useNavigate()
 
     const raiting = [0,1,2,3,4]
 
@@ -44,11 +46,10 @@ const Review = ({currentDeviceId,allRatings}) => {
                                 <Button
                                     variant={"outline-dark"} 
                                     className="mt-3 p-3"
-                                    onClick={()=> setRewiewCreateVisible(true)}
+                                    onClick={()=> navigate(LOGIN_ROUTE)}
                                 >
-                                    Оставить отзыв not auth
+                                    Авторизация
                                 </Button> 
-                                <CreateRewiew show={rewiewCreateVisible} onHide={()=> setRewiewCreateVisible(false)} userId={user.userId} deviceId={currentDeviceId}/>  
                             </div>
                         }
                 </Row>
