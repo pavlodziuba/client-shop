@@ -38,7 +38,7 @@ const Review = ({currentDeviceId,allRatings}) => {
                                     className="mt-3 p-3"
                                     onClick={()=> setRewiewCreateVisible(true)}
                                 >
-                                    Оставить отзыв
+                                    Оставить отзыв2
                                 </Button> 
                                 <CreateRewiew show={rewiewCreateVisible} onHide={()=> setRewiewCreateVisible(false)} userId={user.userId} deviceId={currentDeviceId}/>  
                             </div>      
