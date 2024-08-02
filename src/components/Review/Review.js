@@ -231,7 +231,7 @@ const Review = ({currentDeviceId,allRatings}) => {
                                     </div>
                                 </div>
                                 <div className="d-flex  flex-column">
-                                    <div className='p-1' style={{fontSize:14}}>
+                                    <div className='p-1' style={{fontSize:14, boxSizing: 'border-box'}}>
                                             {info.message}
                                     </div>
                                 </div>
