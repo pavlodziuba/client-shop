@@ -1,0 +1,27 @@
+.raiting-star-list{
+    display: flex;
+    list-style:none;
+    margin:0;
+    padding:0;
+    align-items:center;
+}
+.raiting_star {
+    background: url(../../assets/Star2.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.raiting_star--active {   
+    background: url(../../assets/Star2Fluid.png) no-repeat;
+    background-position: center;
+    background-size: cover;  
+}
+.rating-link{
+    cursor: pointer;
+    color:rgb(152, 162, 255);
+    text-decoration: none;
+}
+.rating-link:hover {
+    cursor: pointer;
+    color:red;
+    text-decoration: underline;
+}

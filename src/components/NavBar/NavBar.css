@@ -1,0 +1,19 @@
+@keyframes anim { 
+    from {
+        top: 0px;
+        height:35px;
+    }
+    to {
+        top: 5px; 
+        height:40px;
+    }
+  }
+#nav_buy_icon.animate{
+    transform: rotate(10deg);
+    animation: anim 0.2s alternate;
+    animation-iteration-count: 2;
+    position: relative;
+}
+.nav_buy_button{
+    margin-left: 20px;
+}

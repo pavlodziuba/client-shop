@@ -1,0 +1,361 @@
+import React, {useContext, useEffect,useState} from 'react';
+import {Context} from "../../index";
+import DeviceItem from '../DeviceItem';
+import next_icon from '../../assets/slider_next_icon.svg'
+import prev_icon from '../../assets/slider_prev_icon.svg'
+import {fetchAllDevices,fetchRating} from "../../http/deviceAPI";
+import { Image } from 'react-bootstrap';
+import './LastSeenDevices.css';
+
+const LastSeenDevices = () => {
+    const {basket} = useContext(Context)
+    const [devices,setDevice] = useState([])
+    const [translateSlider, setTranslateSlider] = useState(0)
+    const [maxSliderCounter, setMaxSliderCounter] = useState(-1)
+    const [sliderCounterDots, setSliderCounterDots] = useState([])
+    const [allRatings, setAllRatings]= useState([])
+    const [onTouchStart, setOnTouchStart] = useState(0)
+    const [currentTouchStart, setCurrentTouchStart] = useState(0)
+    const [screenWidth, setScreenWidth] = useState(0)
+    
+    
+    useEffect(() => {
+        checkWidth()
+    },[devices,basket.lastSeenDevices])
+
+    useEffect(() => {
+
+        // Add all devices from DB in DeviceStorage user@gmail.com
+        fetchAllDevices()
+        .then(data => setDevice(data.rows))
+        .then(()=>{
+            fetchRating()
+            .then(rating => setAllRatings(rating))
+        })
+
+
+     },[basket.lastSeenDevices])
+
+     function countReview(device){
+        let count = 0
+        allRatings.map(rate=>{
+            if(rate.deviceId == device.id){
+                count++
+            }
+        })
+        return count
+    }
+
+    function setActiveButton(dot){
+        if(dot==-1){
+            const sliderElemWidth = document.getElementById('last_seen_devices_item').scrollWidth
+            const clientWidth = document.getElementById('last_seen_devices_list').clientWidth
+            const countElemOnSlide = (maxSliderCounter/sliderElemWidth)/(maxSliderCounter/clientWidth)
+            const currentTransformX  = Number((document.getElementById('last_seen_devices_list').style.transform).match(/\d*(?=px)/)[0])
+            for (let i = 0; i < sliderCounterDots.length; i++) {
+                if( currentTransformX == sliderElemWidth*countElemOnSlide*i){
+                    dot=i
+                }   
+            }
+        }
+        if(dot != -1){
+            for (let i = 0; i < sliderCounterDots.length; i++) {
+                const otherButton = document.getElementsByClassName('slider-dots__button')[i]
+                otherButton.classList.remove("slider-dots__button--active")
+            }
+            const curentButton = document.getElementsByClassName('slider-dots__button')[dot]
+            curentButton.classList.add("slider-dots__button--active")            
+        }
+    }
+
+    const checkWidth = () =>{
+        const sliderMain = document.querySelector('.sleder-main')
+        sliderMain.style.width= `100%`
+        const mainWidth = sliderMain.offsetWidth 
+        if(mainWidth % 2 !=0 ){
+            sliderMain.style.width= `${mainWidth-1}px`
+            setScreenWidth( mainWidth)
+        }else{
+            setScreenWidth( mainWidth)
+        }
+        
+        const width = document.getElementById('last_seen_devices_list').scrollWidth 
+        const clientWidth = document.getElementById('last_seen_devices_list').clientWidth
+        setMaxSliderCounter(-(width-clientWidth))
+        setSliderCounterDots([])
+        let tempCounterDots = []
+        for (let i = 0; i < Math.round(width/clientWidth); i++) {
+            tempCounterDots.push(i)
+        }
+        setSliderCounterDots(tempCounterDots)
+    }
+
+
+    function goToNext(){
+        const sliderElemWidth = document.getElementById('last_seen_devices_item').scrollWidth
+        const clientWidth = document.getElementById('last_seen_devices_list').clientWidth
+        const countElemOnSlide = (maxSliderCounter/sliderElemWidth)/(maxSliderCounter/clientWidth)
+        const slider = document.getElementById('last_seen_devices_list')
+        const currentTransformX  = -Number((document.getElementById('last_seen_devices_list').style.transform).match(/\d*(?=px)/)[0])
+        let check = true
+        slider.style.transition = '375ms'
+        for (let i = 0; i < sliderCounterDots.length; i++) {
+            if( -currentTransformX == sliderElemWidth*countElemOnSlide*i){
+                setTranslateSlider(currentTransformX-clientWidth)
+                check = false
+            }
+        }
+        if(check){
+            for (let i = 1; i <= sliderCounterDots.length; i++) {
+                if( -(sliderElemWidth*countElemOnSlide*(i-1)) > currentTransformX & currentTransformX > -(sliderElemWidth*countElemOnSlide*i)){
+                    setTranslateSlider(-(sliderElemWidth*countElemOnSlide*i))
+                }   
+            }
+        }
+        setTimeout(() => {
+            slider.style.transition = '0s'
+            setActiveButton(-1)
+          }, 376)
+    }
+
+    function goToPrev(){
+        const sliderElemWidth = document.getElementById('last_seen_devices_item').scrollWidth
+        const clientWidth = document.getElementById('last_seen_devices_list').clientWidth
+        const countElemOnSlide = (maxSliderCounter/sliderElemWidth)/(maxSliderCounter/clientWidth)
+        const slider = document.getElementById('last_seen_devices_list')
+        const currentTransformX  = -Number((document.getElementById('last_seen_devices_list').style.transform).match(/\d*(?=px)/)[0])
+        let check = true
+        slider.style.transition = '375ms'
+        for (let i = 0; i < sliderCounterDots.length; i++) {
+            if( -currentTransformX == sliderElemWidth*countElemOnSlide*i){
+                setTranslateSlider(currentTransformX+clientWidth)
+                check = false
+            }
+        }
+        if(check){
+            for (let i = 1; i <= sliderCounterDots.length; i++) {
+                if( -(sliderElemWidth*countElemOnSlide*(i-1)) > currentTransformX & currentTransformX > -(sliderElemWidth*countElemOnSlide*i)){
+                    setTranslateSlider(-(sliderElemWidth*countElemOnSlide*(i-1)))
+                }   
+            }
+        }
+        setTimeout(() => {
+            slider.style.transition = '0s'
+            setActiveButton(-1)
+          }, 376)
+    }
+
+    function reportWindowSize() {
+        window.addEventListener('resize', checkWidth());
+        setTranslateSlider(0)
+        setActiveButton(0)
+      }
+
+    function touchMove(clientX,e){
+        const move = currentTouchStart-(onTouchStart-clientX)
+        const maxWidth = document.getElementById('last_seen_devices_list').scrollWidth
+        const sliderElemWidth = document.getElementById('last_seen_devices_item').scrollWidth
+        if(move > 0){
+
+        }
+        else if(move < -(maxWidth-screenWidth+sliderElemWidth/3)){
+
+        }
+        else{
+            
+        }
+        setTranslateSlider(move)
+    }
+    function touchEnd(clientX){
+        const sliderElemWidth = document.getElementById('last_seen_devices_item').offsetWidth
+        const move = onTouchStart-clientX
+        const absMove = Math.abs((onTouchStart-clientX))
+        const maxWidth = document.getElementById('last_seen_devices_list').scrollWidth
+        const slider = document.getElementById('last_seen_devices_list')
+
+        slider.style.transition = '200ms'
+        if(absMove > sliderElemWidth/4){
+            if(move>0){
+                if((-move-sliderElemWidth+currentTouchStart) < -(maxWidth-screenWidth+sliderElemWidth/3)){
+                    slider.style.transition = '357ms'
+                    setTranslateSlider(-(maxWidth-screenWidth))
+                    setTimeout(() => {
+                        slider.style.transition = '0s'
+                        setActiveButton(-1)
+                    }, 500)
+                    return
+                }
+                if(move>(sliderElemWidth+sliderElemWidth/4)){
+                    const bigMove = Math.round(move/sliderElemWidth)
+                    setTranslateSlider(currentTouchStart-sliderElemWidth*bigMove)
+                }else{
+                    setTranslateSlider(currentTouchStart-sliderElemWidth)
+                }
+            }
+            if(move<0){
+                if((currentTouchStart-move)> 0){
+                    setTranslateSlider(0)
+                    setActiveButton(0)
+                    setTimeout(() => {
+                        slider.style.transition = '0s'
+                        setActiveButton(-1)
+                    }, 500)
+                    return
+                }
+                if(absMove>(sliderElemWidth+sliderElemWidth/4)){
+                    const bigMove = Math.round(Math.abs(move/sliderElemWidth))
+                    setTranslateSlider(currentTouchStart+sliderElemWidth*bigMove)
+                }else{
+                    setTranslateSlider(currentTouchStart+sliderElemWidth)   
+                }
+            }
+        }else{
+            setTranslateSlider(currentTouchStart)
+        }
+        setTimeout(() => {
+            slider.style.transition = '0s'
+            setActiveButton(-1)
+
+          }, 500)
+    }
+    function sliderButtonClick(dot){
+        const slider = document.getElementById('last_seen_devices_list')
+        slider.style.transition = '375ms'
+        setTranslateSlider(-screenWidth*dot)
+        setTimeout(() => {
+            slider.style.transition = '0s'
+          }, 376)
+    }
+    window.onresize = reportWindowSize;
+
+
+    return (
+        <div>
+            <h1 className="mt-5 pb-2">Просмотренные товары</h1>
+            <div  style={{position: 'relative'}}>
+                <div style={{position: 'relative',width: '100%',overflow: 'hidden'}}>
+                {translateSlider < 0 ?
+                    <button
+                        className="carousel-control-prev"
+                        role="button"
+                        onClick={()=> {
+                            goToPrev()
+                            checkWidth()
+                        }}
+                        style={{width:'5%'}}
+                    >
+                        <span aria-hidden="true">
+                            <Image width={40} src={prev_icon}/>
+                        </span>
+                            
+
+                    </button >
+                    :
+                    <button
+                        className="carousel-control-prev d-none"
+                        role="button"
+                        onClick={()=> {
+                        }}
+                        style={{width:'5%'}}
+                    >
+                        <span aria-hidden="true">
+                            <Image width={40} src={prev_icon}/>
+                        </span>
+                    </button >
+                }
+                    <div  className='sleder-main'>
+                    <ul id='last_seen_devices_list' className='last_seen_devices_list col-12 p-0 m-0' style={{transform: `translate3d(${translateSlider}px,0px,0px)`}}
+                                onTouchStart={(e)=>{
+                                    setOnTouchStart(e.changedTouches[0].clientX)
+                                    setCurrentTouchStart(translateSlider)
+                                }}
+                                onTouchMove={(e)=> {
+                                    touchMove(e.changedTouches[0].clientX,e)
+                                }}
+                                onTouchEnd={(e)=>{
+                                    touchEnd(e.changedTouches[0].clientX)
+                                }}                    
+                    >
+                        {
+                        basket.lastSeenDevices.map(lastSeenId =>
+                            devices.map(device =>
+                                device.id == lastSeenId ? 
+                                <li id='last_seen_devices_item' key={lastSeenId} className={'col-6 col-md-4 col-lg-3 col-xl-2'} style={{height:'100%'}}>
+                                    <DeviceItem style={{height:'10px'}} key={lastSeenId} devicee={device} small={12} lg={12} md={12} sm={12} rewiewCount={countReview(device)}/>
+                                </li>
+                                : ''
+                            )
+                        )
+                        }  
+                    </ul>
+                    </div>
+                {maxSliderCounter < translateSlider ?
+                    <button
+                        className="carousel-control-next"
+                        role="button"
+                        onClick={()=>{
+                            goToNext()
+                            checkWidth()
+                        }}
+                        style={{width:'5%'}}
+                    >
+                        <span aria-hidden="true">
+                            <Image width={40} src={next_icon}/>
+                        </span>
+                            
+
+                    </button >
+                    :
+                    <button
+                    className="carousel-control-next d-none"
+                    role="button"
+                    onClick={()=>{
+                    }}
+                    style={{width:'5%'}}
+                >
+                    <span aria-hidden="true">
+                        <Image width={40} src={next_icon}/>
+                    </span>
+                        
+
+                </button >
+                }
+                </div>
+            </div>
+            <div className='simple-slider__footer'>
+                <ul  className='slider-dots' style={{display:'flex', listStyle:'none',maxWidth:'100%'}}>
+                        {
+                            sliderCounterDots.map(dot=>
+                                dot == 0?
+                                <li key={dot}>
+                                    <button
+                                        key={dot}
+                                        type="button"
+                                        className='slider-dots__button slider-dots__button--active'
+                                        onClick={()=> {
+                                            sliderButtonClick(dot)
+                                            setActiveButton(dot)
+                                        }}
+                                    />
+                                </li>
+                                :
+                                <li key={dot}>
+                                    <button
+                                        key={dot}
+                                        type="button"
+                                        className='slider-dots__button'
+                                        onClick={()=> {
+                                            sliderButtonClick(dot)
+                                            setActiveButton(dot)
+                                        }}
+                                    />
+                                </li>
+                            )
+                        }
+                </ul>
+            </div>
+        </div>
+    );
+};
+
+export default LastSeenDevices;
