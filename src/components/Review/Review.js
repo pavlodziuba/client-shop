@@ -49,7 +49,7 @@ const Review = ({currentDeviceId,allRatings}) => {
                                     className="mt-3 p-3"
                                     onClick={()=> navigate(LOGIN_ROUTE)}
                                 >
-                                    Авторизация
+                                    Авторизуйтесь
                                 </Button> 
                             </div>
                         }
@@ -128,7 +128,7 @@ const Review = ({currentDeviceId,allRatings}) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='p-1' style={{fontSize:14}}>
+                                    <div className='p-1' style={{fontSize:14, wordWrap: 'break-word', whiteSpace: 'pre-wrap'}}>
                                         {info.message}
                                     </div>
                                 </div>
