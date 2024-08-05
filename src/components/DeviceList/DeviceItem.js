@@ -95,7 +95,7 @@ const DeviceItem = observer(({devicee,col,small,md,sm,rewiewCount}) => {
                     </div>
                     <div style={{width: '100%',height: '100%', cursor:"pointer"}} onClick={()=> navigate(DEVICE_ROUTE + '/' + devicee.id)}>
                         <div className='goods-tile__picture'>
-                            <img src={process.env.REACT_APP_API_URL + '/' +devicee.img}></img>
+                            <img src={devicee.img}></img>
                         </div>
                         <div style={{fontSize:'14px',maxHeight:'40px',overflow:'hidden',marginBottom:'8px'}}>
                             {devicee.name}
