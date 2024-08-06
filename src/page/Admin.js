@@ -13,7 +13,7 @@ import { observer } from 'mobx-react-lite';
 
 
 const Admin = observer(() =>{
-    const {device} = useContext(Context)
+    const {device, refreshContext} = useContext(Context)
     const [brandVisible, setBrandVisible] = useState(false)
     const [typeVisible, setTypeVisible] = useState(false)
     const [deviceVisible, setDeviceVisible] = useState(false)
@@ -59,7 +59,7 @@ const Admin = observer(() =>{
             <Button 
                 variant={"outline-dark"} 
                 className="mt-3 p-3"
-                onClick={()=> setDeviceVisible(true)}
+                onClick={()=> {refreshContext().then(setDeviceVisible(true))}}
             >
                 Add device
                 </Button>
