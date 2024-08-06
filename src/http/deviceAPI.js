@@ -117,7 +117,8 @@ export const createRating = async (userId,deviceId,message,rate,name) => {
     const {data} = await $authHost.post('api/rating',{
         userId:userId,deviceId:deviceId,message:message,rate:rate,name:name
     })
-    const {allRating} = await $authHost.get('api/rating',)
+
+    const allRating = await $authHost.get('api/rating',)
     const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
     let allRate = 0;
     let countRate = 0;
@@ -125,15 +126,17 @@ export const createRating = async (userId,deviceId,message,rate,name) => {
         allRate += rating.rate; 
         countRate += 1;         
     });
-    const newRate = countRate === 0 ? 0 : allRate / countRate;
+    const newRate = countRate === 0 ? 0 : Math.floor(allRate / countRate);
     await $authHost.put('api/device'+ '/' + deviceId + '/' + newRate)
+
     return data
 }
 export const editRating = async (userId,deviceId,message,rate) => {
     const {data} = await $authHost.put('api/rating',{
         userId:userId,deviceId:deviceId,message:message,rate:rate
     })
-    const {allRating} = await $authHost.get('api/rating',)
+    const allRating = await $authHost.get('api/rating',)
+
     const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
     let allRate = 0;
     let countRate = 0;
@@ -141,13 +144,15 @@ export const editRating = async (userId,deviceId,message,rate) => {
         allRate += rating.rate; 
         countRate += 1;         
     });
-    const newRate = countRate === 0 ? 0 : allRate / countRate;
+    const newRate = countRate === 0 ? 0 : Math.floor(allRate / countRate);
     await $authHost.put('api/device'+ '/' + deviceId + '/' + newRate)
+
     return data
 }
 export const deleteRating = async (deviceId,userId) => {
     const {data} = await $authHost.delete('api/rating/'+deviceId+'/'+userId)
-    const {allRating} = await $authHost.get('api/rating',)
+
+    const allRating = await $authHost.get('api/rating',)
     const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
     let allRate = 0;
     let countRate = 0;
@@ -155,8 +160,9 @@ export const deleteRating = async (deviceId,userId) => {
         allRate += rating.rate; 
         countRate += 1;         
     });
-    const newRate = countRate === 0 ? 0 : allRate / countRate;
+    const newRate = countRate === 0 ? 0 : Math.floor(allRate / countRate);
     await $authHost.put('api/device'+ '/' + deviceId + '/' + newRate)
+
     return data
 }
 export const fetchRating = async () => {
