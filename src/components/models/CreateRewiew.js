@@ -44,7 +44,7 @@ const CreateRewiew = ({show, onHide,userId,deviceId}) => {
     
     const addRating = () => {
         getUserName(userId).then(name => {
-            createRating(userId,deviceId,message,userRating+1,name).then(data=>  setMessage(''))
+            createRating(userId,deviceId,message,userRating+1,name).then(window.location.reload())
         })
         onHide()
     }
