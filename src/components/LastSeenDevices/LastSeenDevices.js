@@ -146,7 +146,7 @@ const LastSeenDevices = () => {
 
     return (
         <div className='uniq-slider'>
-            <h1 className="mt-5 pb-2">Просмотренные товары</h1>
+            <h1 className="mt-5 pb-2">Viewed items</h1>
             <div  style={{position: 'relative'}}>
                 <div style={{position: 'relative',width: '100%',overflow: 'hidden'}}>
                 {translateSlider < 0 ?

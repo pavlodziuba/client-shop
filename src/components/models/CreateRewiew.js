@@ -62,12 +62,12 @@ const CreateRewiew = ({show, onHide,userId,deviceId}) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Добавить отзыв
+            Add a review
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
-            <h5 style={{textAlign:'center'}}>Оцените товар</h5>                  
+            <h5 style={{textAlign:'center'}}>Rate the product</h5>                  
             <div className="d-flex align-items-center justify-content-center p-0">
                 <ul id='raiting_star_list' className="d-flex p-0" style={{listStyle:'none',maxWidth:'125px'}} onMouseLeave={()=> curentUserRatingLight()}>
                     {
@@ -94,13 +94,13 @@ const CreateRewiew = ({show, onHide,userId,deviceId}) => {
                 maxLength={254}
                 value={message}
                 onChange={e =>  setMessage(e.target.value)}
-                placeholder={"Напишите отзыв"}
+                placeholder={"Write a review"}
             />
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="outline-danger" onClick={onHideAll}>Закрыть</Button>
-        <Button variant="outline-success" onClick={addRating}>Добавить</Button>
+        <Button variant="outline-danger" onClick={onHideAll}>Close</Button>
+        <Button variant="outline-success" onClick={addRating}>Add</Button>
       </Modal.Footer>
     </Modal>
     );

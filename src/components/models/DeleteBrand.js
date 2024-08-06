@@ -29,7 +29,7 @@ const DeleteBrand = ({show, onHide}) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Удалить бренд
+          Delete brand
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -37,13 +37,13 @@ const DeleteBrand = ({show, onHide}) => {
             <Form.Control 
                 value={value}
                 onChange={e => setValue(e.target.value)}
-                placeholder={"Введите название бренда"}
+                placeholder={"Enter brand name"}
             />
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="outline-danger" onClick={onHide}>Закрыть</Button>
-        <Button variant="outline-success" onClick={dellBrand}>Удалить</Button>
+        <Button variant="outline-danger" onClick={onHide}>Close</Button>
+        <Button variant="outline-success" onClick={dellBrand}>Delete</Button>
       </Modal.Footer>
     </Modal>
     );

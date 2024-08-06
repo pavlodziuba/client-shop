@@ -86,7 +86,7 @@ const UpdateDevice = observer(({show, onHide}) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Редактировать устройство
+                    Edit device
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -95,19 +95,19 @@ const UpdateDevice = observer(({show, onHide}) => {
                         value={findName}
                         onChange={e => setFindName(e.target.value)}
                         className="mt-3"
-                        placeholder="Введите название для поиска устройства"
+                        placeholder="Enter a name to search for the device"
                     />
                     <div className='d-flex mt-3 align-items-center justify-content-end'>
                         <Button
                             variant={"outline-dark"}
                             onClick={findDevice}
                         >
-                            Поиск
+                            Search
                         </Button> 
                     </div>
      
                     <Dropdown className="mt-2 mb-2">
-                        <Dropdown.Toggle>{device.selectedType.name || "Выберите тип"}</Dropdown.Toggle>
+                        <Dropdown.Toggle>{device.selectedType.name || "Select type"}</Dropdown.Toggle>
                         <Dropdown.Menu>
                             {device.types.map(type =>
                                 <Dropdown.Item
@@ -120,7 +120,7 @@ const UpdateDevice = observer(({show, onHide}) => {
                         </Dropdown.Menu>
                     </Dropdown>
                     <Dropdown className="mt-2 mb-2">
-                        <Dropdown.Toggle>{device.selectedBrand.name || "Выберите бренд"}</Dropdown.Toggle>
+                        <Dropdown.Toggle>{device.selectedBrand.name || "Select a brand"}</Dropdown.Toggle>
                         <Dropdown.Menu>
                             {device.brands.map(brand =>
                                 <Dropdown.Item
@@ -136,13 +136,13 @@ const UpdateDevice = observer(({show, onHide}) => {
                         value={name}
                         onChange={e => setName(e.target.value)}
                         className="mt-3"
-                        placeholder="Введите название устройства"
+                        placeholder="Enter the device name"
                     />
                     <Form.Control
                         value={price}
                         onChange={e => setPrice(Number(e.target.value))}
                         className="mt-3"
-                        placeholder="Введите стоимость устройства"
+                        placeholder="Enter the cost of the device"
                         type="number"
                     />
                     <Form.Control
@@ -155,7 +155,7 @@ const UpdateDevice = observer(({show, onHide}) => {
                         variant={"outline-dark"}
                         onClick={addInfo}
                     >
-                        Добавить новое свойство
+                        Add new property
                     </Button>
                     {info.map(info =>
                         <Row className="mt-4" key={info.id}>
@@ -163,14 +163,14 @@ const UpdateDevice = observer(({show, onHide}) => {
                                 <Form.Control
                                     value={info.title}
                                     onChange={(e) => changeInfo('title', e.target.value, info.id)}
-                                    placeholder="Введите название свойства"
+                                    placeholder="Enter the name of the property"
                                 />
                             </Col>
                             <Col md={4}>
                                 <Form.Control
                                     value={info.description}
                                     onChange={(e) => changeInfo('description', e.target.value, info.id)}
-                                    placeholder="Введите описание свойства"
+                                    placeholder="Enter a description of the property"
                                 />
                             </Col>
                             <Col md={4}>
@@ -178,7 +178,7 @@ const UpdateDevice = observer(({show, onHide}) => {
                                     onClick={() => removeInfo(info.id)}
                                     variant={"outline-danger"}
                                 >
-                                    Удалить
+                                    Delete
                                 </Button>
                             </Col>
                         </Row>
@@ -186,8 +186,8 @@ const UpdateDevice = observer(({show, onHide}) => {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="outline-danger" onClick={onHide}>Закрыть</Button>
-                <Button variant="outline-success" onClick={UpdateDevice}>Сохранить</Button>
+                <Button variant="outline-danger" onClick={onHide}>Close</Button>
+                <Button variant="outline-success" onClick={UpdateDevice}>Save</Button>
             </Modal.Footer>
         </Modal>
     );

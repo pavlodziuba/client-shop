@@ -63,12 +63,12 @@ const EditRewiew = observer(({show, onHide,userId,deviceId,curentUserRating}) =>
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Изменить отзыв
+            Edit your review
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
-            <h5 style={{textAlign:'center'}}>Оцените товар</h5>    
+            <h5 style={{textAlign:'center'}}>Rate the product</h5>    
             <div className="d-flex align-items-center justify-content-center p-0">
                 <ul id='raiting_star_list' className="d-flex p-0" style={{listStyle:'none',maxWidth:'125px'}} onMouseLeave={()=> curentUserRatingLight()}>
                     {
@@ -95,13 +95,13 @@ const EditRewiew = observer(({show, onHide,userId,deviceId,curentUserRating}) =>
                 maxLength={254}
                 value={message}
                 onChange={e =>  setMessage(e.target.value)}
-                placeholder={"Измните отзыв"}
+                placeholder={"Edit the review"}
             />
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="outline-danger" onClick={onHideAll}>Закрыть</Button>
-        <Button variant="outline-success" onClick={updateRating}>Изменить</Button>
+        <Button variant="outline-danger" onClick={onHideAll}>Close</Button>
+        <Button variant="outline-success" onClick={updateRating}>Edit</Button>
       </Modal.Footer>
     </Modal>
     );

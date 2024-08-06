@@ -34,7 +34,7 @@ const PriceBar = observer(() => {
                     style={{borderColor:'rgb(152, 162, 255)'}}
                     className='mb-2 align-items-center justify-content-center' 
                 >   
-                    <div style={{textAlign:'center'}}><p><strong>Диапазон цен</strong></p></div>
+                    <div style={{textAlign:'center'}}><p><strong>Price range</strong></p></div>
                     <div className="d-flex">
                         <input 
                             min = {0}
@@ -74,7 +74,7 @@ const PriceBar = observer(() => {
                     style={{backgroundColor:'rgb(152, 162, 255)'}}
                     onClick={() => device.setSelectedPrice({min:value[0], max:value[1]})}
                 >
-                    Искать
+                    Search
                 </Button>
             </ListGroup.Item>
         </ListGroup>

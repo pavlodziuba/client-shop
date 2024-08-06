@@ -47,21 +47,21 @@ const Admin = observer(() =>{
                 className="mt-3 p-3"
                 onClick={()=> setTypeVisible(true)}
             >
-                Добавить тип
+                Add type
                 </Button>
             <Button 
                 variant={"outline-dark"} 
                 className="mt-3 p-3"
                 onClick={()=> setBrandVisible(true)}
             >
-                Добавить бренд
+                Add brand
                 </Button>
             <Button 
                 variant={"outline-dark"} 
                 className="mt-3 p-3"
                 onClick={()=> setDeviceVisible(true)}
             >
-                Добавить устройство
+                Add device
                 </Button>
                 <CreateBrand show={brandVisible} onHide={()=> setBrandVisible(false)}/>
             <CreateDevice show={deviceVisible} onHide={()=> setDeviceVisible(false)}/>
@@ -71,21 +71,21 @@ const Admin = observer(() =>{
                 className="mt-3 p-3"
                 onClick={()=> setDelTypeVisible(true)}
             >
-                Удалить тип
+                Remove type
                 </Button>
             <Button 
                 variant={"outline-dark"} 
                 className="mt-3 p-3"
                 onClick={()=> setDelBrandVisible(true)}
             >
-                Удалить бренд
+                Remove brand
                 </Button>
             <Button 
                 variant={"outline-dark"} 
                 className="mt-3 p-3"
                 onClick={()=> setDelDeviceVisible(true)}
             >
-                Удалить устройство
+                Remove the device
                 </Button>
                 <DeleteBrand show={delBrandVisible} onHide={()=> setDelBrandVisible(false)}/>
             <DeleteDevice show={delDeviceVisible} onHide={()=> setDelDeviceVisible(false)}/>
@@ -95,7 +95,7 @@ const Admin = observer(() =>{
                 className="mt-3 p-3"
                 onClick={()=> setUpdateDeviceVisible(true)}
             >
-                Редактировать устройство
+                Edit device
                 </Button>
             <UpdateDevice show={updateDeviceVisible} onHide={()=> setUpdateDeviceVisible(false)}/>
         </Container>

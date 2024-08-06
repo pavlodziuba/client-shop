@@ -110,7 +110,7 @@ const DevicePage = observer(() => {
             addBasketDevice(formData).then(() => changeBasketlNum())
             setInBusketOnPage(true)
         }else{
-            alert('Авторизуйтесь!')
+            alert('Sign in!')
              navigate(LOGIN_ROUTE)
         }
     }
@@ -136,19 +136,19 @@ const DevicePage = observer(() => {
                         className="d-flex flex-column align-items-center justify-content-around"
                         style={{width: 300, height: 300, fontSize: 32, border: '5px solid lightgray'}}
                     >
-                        <h3>От: {device.price} $</h3>
+                        <h3>{device.price} $</h3>
                         {
                         inBusketOnPage ? 
-                            <Button variant={"success"} onClick={()=> navigate(BASKET_ROUTE)}>Уже в корзине</Button>
+                            <Button variant={"success"} onClick={()=> navigate(BASKET_ROUTE)}>Already in the cart</Button>
                         :
-                            <Button variant={"outline-dark"} onClick={addItemToBasket}>Добавить в корзину</Button>
+                            <Button variant={"outline-dark"} onClick={addItemToBasket}>Add to cart</Button>
                         }
                     </Card>
                 </Col>
             </Row>
             <Row className="d-flex flex-column m-3">
             <h2>{device.name}</h2>
-                <h1>Характеристики</h1>
+                <h1>Specifications</h1>
                 {device.info.map((info, index) => 
                     <Row key={info.id} style={{background: index % 2 === 0 ? 'lightgray' : 'transparent', padding: 10}}>
                         {info.title}: {info.description}

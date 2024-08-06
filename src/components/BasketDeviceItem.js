@@ -78,7 +78,7 @@ const BasketDeviceItem = observer(({devicee,basketNum}) => {
     }
     return ( 
         <Col md={3} className={"mt-2 p-0"} >
-            <div><Button className={"mb-2"} variant={"outline-danger"} onClick={() => delDevice()} ><Image className='mb-1' width={22} height={22} src={trash_can}/> Удалить</Button></div>
+            <div><Button className={"mb-2"} variant={"outline-danger"} onClick={() => delDevice()} ><Image className='mb-1' width={22} height={22} src={trash_can}/> Delete</Button></div>
             <Card style={{width: '100%', cursor:"pointer", padding:5}} border={"light"} onClick={()=> navigate(DEVICE_ROUTE + '/' + devicee.id)}>
                 <Image width={'100%'} style={{minHeight: 200}} src={devicee.img}/>
                 <div className='text-black-50 mt-1 d-flex justify-content-between align-items-center'>

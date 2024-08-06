@@ -18,7 +18,7 @@ const BrandBar = observer(() => {
                     border={ selectedBrand ? 'light' : 'success'}
                     onClick={() => device.setAlldBrand()}
                     >
-                    Все бренды        
+                    All brands        
                 </Card>               
             }
             {device.brands.map(brand =>

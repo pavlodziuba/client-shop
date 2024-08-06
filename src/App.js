@@ -10,32 +10,6 @@ import {Spinner} from "react-bootstrap";
 import {fetchSeenBasketDevices, fetchBasketDevices,createSeenBasketDevices} from "./http/deviceAPI";
 import {useDispatch} from 'react-redux'
 
-class Content extends React.Component{
-    constructor(props) {
-        super(props)
-        this.handleClick = this.handleClick.bind(this);
-      }
-
-
-      handleClick(el) {
-        el.target.style.backgroundColor = getRandomColorStyle()
-        el.target.style.color= getRandomColorStyle()
-        function getRandom() {
-            return Math.floor(Math.random() * 255);
-        }
-        function getRandomColorStyle() {
-            return 'rgb(' + getRandom() + ',' + getRandom() + ',' +
-                getRandom() + ')';
-        }    
-      }
-      render() {
-        return (
-                <div>
-                    <p onClick={this.handleClick}>Хоббі</p>
-                </div>
-        );
-      }
-};
 
 const App = observer(() => {
     const {user} = useContext(Context)

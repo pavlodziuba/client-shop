@@ -26,7 +26,7 @@ const Rating = ({device,rewiewCount}) =>{
                             }
                         </ul>
                         <span>
-                            {
+                            {/*
                             rewiewCount > 1 ? 
                                 rewiewCount%10 >= 5 ? 
                                     <>{rewiewCount} Отзывов</>
@@ -36,7 +36,19 @@ const Rating = ({device,rewiewCount}) =>{
                             rewiewCount%10 == 1 ?
                                 <>{rewiewCount} Отзыв</>
                                 :
-                                <>Оставьте отзыв</>
+                                <>Leave a review</>
+                            */} 
+                            {
+                            rewiewCount > 1 ? 
+                                rewiewCount%10 >= 5 ? 
+                                    <>{rewiewCount} Review</>
+                                    :
+                                    <>{rewiewCount} Review</>
+                            :
+                            rewiewCount%10 == 1 ?
+                                <>{rewiewCount} Review</>
+                                :
+                                <>Leave a review</>
                             } 
                         </span>
                     </div> 

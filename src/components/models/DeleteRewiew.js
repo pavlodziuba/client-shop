@@ -19,17 +19,17 @@ const DeleteRewiew = ({show, onHide,userId,deviceId}) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Удалить отзыв
+          Delete review
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
-            <h4 style={{textAlign:'center'}}>Уверены что хотите удалить отзыв?</h4>                  
+            <h4 style={{textAlign:'center'}}>Are you sure you want to remove the review?</h4>                  
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="outline-danger" onClick={onHide}>Закрыть</Button>
-        <Button variant="outline-success" onClick={DeleteRating}>Удалить</Button>
+        <Button variant="outline-danger" onClick={onHide}>Close</Button>
+        <Button variant="outline-success" onClick={DeleteRating}>Delete</Button>
       </Modal.Footer>
     </Modal>
     );

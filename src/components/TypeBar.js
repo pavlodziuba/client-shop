@@ -18,7 +18,7 @@ const TypeBar = observer(() => {
                     style={{cursor: 'pointer', border:'1px solid red'}}
                     onClick={() => device.setClear()}
                 >
-                    Сбросить фильтры
+                    Reset filters
                 </ListGroup.Item>            
             }
            {
@@ -28,7 +28,7 @@ const TypeBar = observer(() => {
                     active={selectedType ? false : true}
                     onClick={() => device.setAllType()}
                 >
-                    Все категории
+                    All categories
                 </ListGroup.Item>            
             }
             {device.types.map(type =>

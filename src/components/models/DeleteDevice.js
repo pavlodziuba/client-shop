@@ -26,7 +26,7 @@ const DeleteDevice = observer(({show, onHide}) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Удалить устройство
+                    Remove the device
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -35,13 +35,13 @@ const DeleteDevice = observer(({show, onHide}) => {
                         value={name}
                         onChange={e => setName(e.target.value)}
                         className="mt-3"
-                        placeholder="Введите название устройства"
+                        placeholder="Enter the device name"
                     />
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="outline-danger" onClick={onHide}>Закрыть</Button>
-                <Button variant="outline-success" onClick={delDevice}>Удалить</Button>
+                <Button variant="outline-danger" onClick={onHide}>Close</Button>
+                <Button variant="outline-success" onClick={delDevice}>Delete</Button>
             </Modal.Footer>
         </Modal>
     );

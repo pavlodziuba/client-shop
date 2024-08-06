@@ -29,7 +29,7 @@ const Review = ({currentDeviceId,allRatings}) => {
 
     return (
         <Row className="d-flex flex-column m-3">
-            <h2>Отзывы</h2>
+            <h2>Reviews</h2>
                 <Row className="d-flex align-items-center justify-content-center mt-4">
                         {user.isAuth ?
                             <div className='w-auto'>
@@ -38,7 +38,7 @@ const Review = ({currentDeviceId,allRatings}) => {
                                     className="mt-3 p-3"
                                     onClick={()=> setRewiewCreateVisible(true)}
                                 >
-                                    Оставить отзыв
+                                    Leave a review
                                 </Button> 
                                 <CreateRewiew show={rewiewCreateVisible} onHide={()=> setRewiewCreateVisible(false)} userId={user.userId} deviceId={currentDeviceId}/>  
                             </div>
@@ -49,7 +49,7 @@ const Review = ({currentDeviceId,allRatings}) => {
                                     className="mt-3 p-3"
                                     onClick={()=> navigate(LOGIN_ROUTE)}
                                 >
-                                    Авторизуйтесь
+                                    Sign in
                                 </Button> 
                             </div>
                         }
@@ -72,7 +72,7 @@ const Review = ({currentDeviceId,allRatings}) => {
                 allRatings.map((info, index) => 
                         info.userId == user.userId & info.deviceId == currentDeviceId?
                         <div key={index}>
-                            <h5>Ваш отзыв</h5>
+                            <h5>Your review</h5>
                             <div className="review-card">
                                     <div className="review-card__top">
                                         <div className="d-flex p-1">
@@ -112,7 +112,7 @@ const Review = ({currentDeviceId,allRatings}) => {
                                                         setRewiewEditVisible(true)
                                                     }}
                                                 >
-                                                Редактировать
+                                                Edit
                                                 </Button>
                                                 <Button 
                                                     size='sm'
@@ -138,7 +138,7 @@ const Review = ({currentDeviceId,allRatings}) => {
                     )}
                 </div>
                     
-                <h5 className="p-0 m-0">Отзывы покупателей</h5>
+                <h5 className="p-0 m-0">Customer Reviews</h5>
                     {user.isADMIN  ?
                         allRatings.map((info, index) => 
                         info.userId != user.userId & info.deviceId == currentDeviceId?
@@ -182,7 +182,7 @@ const Review = ({currentDeviceId,allRatings}) => {
                                                         setRewiewEditVisible(true)
                                                     }}
                                                 >
-                                                Редактировать
+                                                Edit
                                                 </Button>
                                                 <Button 
                                                     size='sm'

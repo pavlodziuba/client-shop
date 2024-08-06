@@ -78,8 +78,8 @@ const NavBar = observer(()=>{
                                 </div>     
                             </Button> 
                         }  
-                        <Button className="ml-2" variant={"outline-light"} onClick={() => navigate(ADMIN_ROUTE)}>Админ панель</Button>    
-                        <Button className="ml-2" variant={"outline-light"} onClick={() => logOut()}>Выйти</Button>    
+                        <Button className="ml-2" variant={"outline-light"} onClick={() => navigate(ADMIN_ROUTE)}>Admin panel</Button>    
+                        <Button className="ml-2" variant={"outline-light"} onClick={() => logOut()}>Log out</Button>    
                     </Nav>
                     :
                     <Nav className="ml-auto" style={{color: 'white'}}>
@@ -119,11 +119,11 @@ const NavBar = observer(()=>{
                                 </div>     
                             </Button> 
                         }  
-                        <Button className="ml-2" variant={"outline-light"} onClick={() => logOut()}>Выйти</Button>    
+                        <Button className="ml-2" variant={"outline-light"} onClick={() => logOut()}>Log out</Button>    
                     </Nav>
                 :
                     <Nav className="ml-auto" style={{color: 'white'}}>
-                    <Button variant={"outline-light"} onClick={() => navigate(LOGIN_ROUTE)}>Авторизация</Button>    
+                    <Button variant={"outline-light"} onClick={() => navigate(LOGIN_ROUTE)}>Sign in</Button>    
                     </Nav>
                 }
             </Container>
