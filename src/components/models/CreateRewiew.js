@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import {Form,Image} from 'react-bootstrap';
 import { useState } from 'react';
 import { getUserName} from '../../http/userAPI';
-import { createRating,fetchRating, setRatingForDevice } from '../../http/deviceAPI';
+import { createRating} from '../../http/deviceAPI';
 import star from '../../assets/Star2.png'
 
 const CreateRewiew = ({show, onHide,userId,deviceId}) => {
@@ -44,19 +44,7 @@ const CreateRewiew = ({show, onHide,userId,deviceId}) => {
     
     const addRating = () => {
         getUserName(userId).then(name => {
-            createRating(userId,deviceId,message,userRating+1,name)
-            fetchRating().then(allRating=> {
-                console.log(allRating)
-                let allRate = 0;
-                let countRate = 0;
-                allRating.forEach(i => {
-                    allRate = allRate +i.rate 
-                    countRate = countRate + 1
-                })
-                const newRate = allRate/countRate
-                countRate === 0 ? setRatingForDevice(deviceId,0) : setRatingForDevice(deviceId,newRate)
-            }).finally(data=>  setMessage(''))
-        })
+            createRating(userId,deviceId,message,userRating+1,name)})
         onHide()
     }
     const onHideAll = () => {

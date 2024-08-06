@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import {Form,Image} from 'react-bootstrap';
 import { useState } from 'react';
-import { editRating,fetchRating, setRatingForDevice} from '../../http/deviceAPI';
+import { editRating} from '../../http/deviceAPI';
 import star from '../../assets/Star2.png'
 import { observer } from 'mobx-react-lite';
 
@@ -47,17 +47,6 @@ const EditRewiew = observer(({show, onHide,userId,deviceId,curentUserRating}) =>
     }
     const updateRating = () => {
         editRating(userId,deviceId,message,userRating+1).then(data=>  setMessage(''))
-        fetchRating().then(allRating=> {
-            console.log(allRating)
-            let allRate = 0;
-            let countRate = 0;
-            allRating.forEach(i => {
-                allRate = allRate +i.rate 
-                countRate = countRate + 1
-            })
-            const newRate = allRate/countRate
-            countRate === 0 ? setRatingForDevice(deviceId,0) : setRatingForDevice(deviceId,newRate)
-        }).finally(data=>  setMessage(''))
         onHideAll()
     }
     const onHideAll = () => {
