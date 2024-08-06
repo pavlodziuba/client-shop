@@ -62,6 +62,12 @@ export const updateDevice = async (device,id) => {
     const {data} = await $authHost.put('api/device/' + id, device)
     return data
 }
+// Update device from DB
+export const setRatingForDevice = async (id,newRating) => {
+    const raitng = Math.floor(newRating)
+    const {data} = await $authHost.put('api/device'+ '/' + id + '/' + raitng)
+    return data
+}
 //------------------------------------------------------------------------Fetch info for devices
 export const fetchInfo = async () => {
     const {data} = await $authHost.get('api/deviceinfo')

@@ -47,6 +47,17 @@ const EditRewiew = observer(({show, onHide,userId,deviceId,curentUserRating}) =>
     }
     const updateRating = () => {
         editRating(userId,deviceId,message,userRating+1).then(data=>  setMessage(''))
+        fetchRating().then(allRating=> {
+            console.log(allRating)
+            let allRate = 0;
+            let countRate = 0;
+            allRating.forEach(i => {
+                allRate = allRate +i.rate 
+                countRate = countRate + 1
+            })
+            const newRating = allRate/countRate;
+            setRatingForDevice(deviceId,newRating)
+        })
         onHideAll()
     }
     const onHideAll = () => {
