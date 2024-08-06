@@ -59,10 +59,7 @@ const Admin = observer(() =>{
             <Button 
                 variant={"outline-dark"} 
                 className="mt-3 p-3"
-                onClick={()=> {
-                    refreshContext();
-                    setDeviceVisible(true);
-                }}
+                onClick={()=> setDeviceVisible(true)}
             >
                 Add device
                 </Button>
