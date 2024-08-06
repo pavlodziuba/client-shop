@@ -11,6 +11,7 @@ const CreateType = ({show, onHide}) => {
     const addType = () => {
         createType({name:value}).then(data=> setValue(''))
         onHide()
+        window.location.reload();
     }
 
     return (

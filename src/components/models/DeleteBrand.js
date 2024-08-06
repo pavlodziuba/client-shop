@@ -20,6 +20,7 @@ const DeleteBrand = ({show, onHide}) => {
         }
       })
       onHide()
+      window.location.reload();
     }
     return (
         <Modal

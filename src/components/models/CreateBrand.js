@@ -11,6 +11,7 @@ const CreateBrand = ({show, onHide}) => {
     const addBrand = () => {
         createBrand({name:value}).then(data=> setValue(''))
         onHide()
+        window.location.reload();
     }
     return (
         <Modal
