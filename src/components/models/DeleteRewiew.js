@@ -18,7 +18,8 @@ const DeleteRewiew = ({show, onHide,userId,deviceId}) => {
               allRate = allRate +i.rate 
               countRate = countRate + 1
           })
-          countRate === 0 ? setRatingForDevice(deviceId,0) : setRatingForDevice(deviceId,allRate/countRate)
+          const newRate = allRate/countRate
+          countRate === 0 ? setRatingForDevice(deviceId,0) : setRatingForDevice(deviceId,newRate)
       }).finally(data=>  setMessage(''))
     }
     return (
