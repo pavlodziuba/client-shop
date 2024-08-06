@@ -9,7 +9,7 @@ const CreateBrand = ({show, onHide}) => {
     const [value, setValue] = useState('')   
 
     const addBrand = () => {
-        createBrand({name:value}).then(data=> setValue(''))
+        createBrand({name:value}).then(window.location.reload())
         onHide()
     }
     return (
