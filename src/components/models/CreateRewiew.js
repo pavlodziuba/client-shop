@@ -54,7 +54,7 @@ const CreateRewiew = ({show, onHide,userId,deviceId}) => {
                 allRate += rating.rate; 
                 countRate += 1;         
             });
-            newRate = countRate === 0 ? 0 : Math.floor(allRate / countRate);
+            const newRate = countRate === 0 ? 0 : Math.floor(allRate / countRate);
             setRatingForDevice(deviceId,newRate)
         })
         onHide()
