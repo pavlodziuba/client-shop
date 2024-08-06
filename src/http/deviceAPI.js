@@ -118,7 +118,7 @@ export const createRating = async (userId,deviceId,message,rate,name) => {
         userId:userId,deviceId:deviceId,message:message,rate:rate,name:name
     })
     let newRate = 0;
-    fetchRating().then(allRating => {
+    await fetchRating().then(allRating => {
         const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
         let allRate = 0;
         let countRate = 0;
@@ -137,7 +137,7 @@ export const editRating = async (userId,deviceId,message,rate) => {
         userId:userId,deviceId:deviceId,message:message,rate:rate
     })
     let newRate = 0;
-    fetchRating().then(allRating => {
+    await fetchRating().then(allRating => {
         const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
         let allRate = 0;
         let countRate = 0;
@@ -155,7 +155,7 @@ export const deleteRating = async (deviceId,userId) => {
     const {data} = await $authHost.delete('api/rating/'+deviceId+'/'+userId)
 
     let newRate = 0;
-    fetchRating().then(allRating => {
+    await fetchRating().then(allRating => {
         const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
         let allRate = 0;
         let countRate = 0;
