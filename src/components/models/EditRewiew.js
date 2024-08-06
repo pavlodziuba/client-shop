@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import {Form,Image} from 'react-bootstrap';
 import { useState } from 'react';
-import { editRating } from '../../http/deviceAPI';
+import { editRating,fetchRating, setRatingForDevice} from '../../http/deviceAPI';
 import star from '../../assets/Star2.png'
 import { observer } from 'mobx-react-lite';
 

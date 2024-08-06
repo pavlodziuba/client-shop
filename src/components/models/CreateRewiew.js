@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import {Form,Image} from 'react-bootstrap';
 import { useState } from 'react';
 import { getUserName} from '../../http/userAPI';
-import { createRating } from '../../http/deviceAPI';
+import { createRating,fetchRating, setRatingForDevice } from '../../http/deviceAPI';
 import star from '../../assets/Star2.png'
 
 const CreateRewiew = ({show, onHide,userId,deviceId}) => {
