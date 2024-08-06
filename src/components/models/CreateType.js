@@ -9,9 +9,8 @@ const CreateType = ({show, onHide}) => {
     const [value, setValue] = useState('')   
 
     const addType = () => {
-        createType({name:value}).then(data=> setValue(''))
+        createType({name:value}).then(window.location.reload())
         onHide()
-        window.location.reload();
     }
 
     return (
