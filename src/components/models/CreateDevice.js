@@ -127,7 +127,7 @@ const CreateDevice = observer(({show, onHide}) => {
                                     onClick={() => removeInfo(i.number)}
                                     variant={"outline-danger"}
                                 >
-                                    Delet e
+                                    D elet e
                                 </Button>
                             </Col>
                         </Row>
