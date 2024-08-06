@@ -9,18 +9,20 @@ const DeleteRewiew = ({show, onHide,userId,deviceId}) => {
 
     const DeleteRating = () => {
         onHide()
-        deleteRating(deviceId,userId)
-        fetchRating().then(allRating => {
-          console.log(allRating)
-          let allRate = 0;
-          let countRate = 0;
-          allRating.forEach(i => {
-              allRate = allRate +i.rate 
-              countRate = countRate + 1
+        deleteRating(deviceId,userId).then(data => {
+          fetchRating().then(allRating => {
+            console.log(allRating)
+            let allRate = 0;
+            let countRate = 0;
+            allRating.forEach(i => {
+                allRate = allRate +i.rate 
+                countRate = countRate + 1
+            })
+            const newRate = allRate/countRate
+            countRate === 0 ? setRatingForDevice(deviceId,0) : setRatingForDevice(deviceId,newRate)
           })
-          const newRate = allRate/countRate
-          countRate === 0 ? setRatingForDevice(deviceId,0) : setRatingForDevice(deviceId,newRate)
         })
+        
     }
     return (
         <Modal
