@@ -46,17 +46,18 @@ const EditRewiew = observer(({show, onHide,userId,deviceId,curentUserRating}) =>
         }
     }
     const updateRating = () => {
-        editRating(userId,deviceId,message,userRating+1).then(data=>  setMessage(''))
-        fetchRating().then(allRating => {
-            const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
-            let allRate = 0;
-            let countRate = 0;
-            filteredRatings.forEach(rating => {
-                allRate += rating.rate; 
-                countRate += 1;         
-            });
-            const newRate = countRate === 0 ? 0 : Math.floor(allRate / countRate);
-            setRatingForDevice(deviceId,newRate)
+        editRating(userId,deviceId,message,userRating+1).then( () =>{
+            fetchRating().then(allRating => {
+                const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
+                let allRate = 0;
+                let countRate = 0;
+                filteredRatings.forEach(rating => {
+                    allRate += rating.rate; 
+                    countRate += 1;         
+                });
+                const newRate = countRate === 0 ? 0 : Math.floor(allRate / countRate);
+                setRatingForDevice(deviceId,newRate)
+            })
         })
         onHideAll()
     }
