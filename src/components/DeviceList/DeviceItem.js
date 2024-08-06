@@ -18,6 +18,7 @@ import './deviceItem.css'
 
 const DeviceItem = observer(({devicee,col,small,md,sm,rewiewCount}) => {
     const navigate = useNavigate();
+    const {device} = useContext(Context)
     const {user} = useContext(Context)
     const {basket} = useContext(Context)
     const [inBusket, setInBusket] = useState(false)
@@ -98,6 +99,13 @@ const DeviceItem = observer(({devicee,col,small,md,sm,rewiewCount}) => {
                             <img src={devicee.img}></img>
                         </div>
                         <div style={{fontSize:'14px',maxHeight:'40px',overflow:'hidden',marginBottom:'8px'}}>
+                            {device.brands.map(brand =>
+                                <div
+                                    key={brand.id}
+                                >
+                                    {devicee.brandId === brand.id ? brand.name  :  ''}
+                                </div>    
+                            )}
                             {devicee.name}
                         </div>
                     </div>
