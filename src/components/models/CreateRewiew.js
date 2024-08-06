@@ -55,7 +55,7 @@ const CreateRewiew = ({show, onHide,userId,deviceId}) => {
                 })
                 const newRating = allRate/countRate;
                 setRatingForDevice(deviceId,newRating)
-            }).then(window.location.reload())
+            }).finally(data=>  setMessage(''))
         })
         onHide()
     }
