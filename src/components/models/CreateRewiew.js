@@ -44,7 +44,7 @@ const CreateRewiew = ({show, onHide,userId,deviceId}) => {
     
     const addRating = () => {
         getUserName(userId).then(name => {
-            createRating(userId,deviceId,message,userRating+1,name).then(window.location.reload())
+            createRating(userId,deviceId,message,userRating+1,name)
             fetchRating().then(allRating=> {
                 console.log(allRating)
                 let allRate = 0;
@@ -55,7 +55,7 @@ const CreateRewiew = ({show, onHide,userId,deviceId}) => {
                 })
                 const newRating = allRate/countRate;
                 setRatingForDevice(deviceId,newRating)
-            })
+            }).then(window.location.reload())
         })
         onHide()
     }
