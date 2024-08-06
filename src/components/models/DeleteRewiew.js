@@ -2,7 +2,7 @@ import React  from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import {Form} from 'react-bootstrap';
-import {deleteRating} from '../../http/deviceAPI';
+import {deleteRating,fetchRating,setRatingForDevice} from '../../http/deviceAPI';
 
 const DeleteRewiew = ({show, onHide,userId,deviceId}) => { 
 
@@ -10,6 +10,17 @@ const DeleteRewiew = ({show, onHide,userId,deviceId}) => {
     const DeleteRating = () => {
         onHide()
         deleteRating(deviceId,userId)
+        fetchRating().then(allRating => {
+          const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
+          let allRate = 0;
+          let countRate = 0;
+          filteredRatings.forEach(rating => {
+              allRate += rating.rate; 
+              countRate += 1;         
+          });
+          newRate = countRate === 0 ? 0 : Math.floor(allRate / countRate);
+          setRatingForDevice(deviceId,newRate)
+      })
     }
     return (
         <Modal
