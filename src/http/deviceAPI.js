@@ -117,16 +117,17 @@ export const createRating = async (userId,deviceId,message,rate,name) => {
     const {data} = await $authHost.post('api/rating',{
         userId:userId,deviceId:deviceId,message:message,rate:rate,name:name
     })
-
-    const allRating = await $authHost.get('api/rating',)
-    const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
-    let allRate = 0;
-    let countRate = 0;
-    filteredRatings.forEach(rating => {
-        allRate += rating.rate; 
-        countRate += 1;         
-    });
-    const newRate = countRate === 0 ? 0 : Math.floor(allRate / countRate);
+    let newRate = 0;
+    fetchRating().then(allRating => {
+        const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
+        let allRate = 0;
+        let countRate = 0;
+        filteredRatings.forEach(rating => {
+            allRate += rating.rate; 
+            countRate += 1;         
+        });
+        newRate = countRate === 0 ? 0 : Math.floor(allRate / countRate);
+    })
     await $authHost.put('api/device'+ '/' + deviceId + '/' + newRate)
 
     return data
@@ -135,16 +136,17 @@ export const editRating = async (userId,deviceId,message,rate) => {
     const {data} = await $authHost.put('api/rating',{
         userId:userId,deviceId:deviceId,message:message,rate:rate
     })
-    const allRating = await $authHost.get('api/rating',)
-
-    const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
-    let allRate = 0;
-    let countRate = 0;
-    filteredRatings.forEach(rating => {
-        allRate += rating.rate; 
-        countRate += 1;         
-    });
-    const newRate = countRate === 0 ? 0 : Math.floor(allRate / countRate);
+    let newRate = 0;
+    fetchRating().then(allRating => {
+        const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
+        let allRate = 0;
+        let countRate = 0;
+        filteredRatings.forEach(rating => {
+            allRate += rating.rate; 
+            countRate += 1;         
+        });
+        newRate = countRate === 0 ? 0 : Math.floor(allRate / countRate);
+    })
     await $authHost.put('api/device'+ '/' + deviceId + '/' + newRate)
 
     return data
@@ -152,15 +154,17 @@ export const editRating = async (userId,deviceId,message,rate) => {
 export const deleteRating = async (deviceId,userId) => {
     const {data} = await $authHost.delete('api/rating/'+deviceId+'/'+userId)
 
-    const allRating = await $authHost.get('api/rating',)
-    const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
-    let allRate = 0;
-    let countRate = 0;
-    filteredRatings.forEach(rating => {
-        allRate += rating.rate; 
-        countRate += 1;         
-    });
-    const newRate = countRate === 0 ? 0 : Math.floor(allRate / countRate);
+    let newRate = 0;
+    fetchRating().then(allRating => {
+        const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
+        let allRate = 0;
+        let countRate = 0;
+        filteredRatings.forEach(rating => {
+            allRate += rating.rate; 
+            countRate += 1;         
+        });
+        newRate = countRate === 0 ? 0 : Math.floor(allRate / countRate);
+    })
     await $authHost.put('api/device'+ '/' + deviceId + '/' + newRate)
 
     return data
