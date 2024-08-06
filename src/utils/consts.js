@@ -5,4 +5,4 @@ export const SHOP_ROUTE = '/'
 export const BASKET_ROUTE = '/basket'
 export const COMPARE_ROUTE = '/compare'
 export const DEVICE_ROUTE = '/device'
-export const ALL_DEVICE_COUNT = 12 
+export const ALL_DEVICE_COUNT = 9 
