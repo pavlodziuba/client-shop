@@ -117,7 +117,7 @@ export const createRating = async (userId,deviceId,message,rate,name) => {
     const {data} = await $authHost.post('api/rating',{
         userId:userId,deviceId:deviceId,message:message,rate:rate,name:name
     })
-    let newRate = 0;
+    let newRate = 5;
     await fetchRating().then(allRating => {
         const filteredRatings = allRating.filter(rating => rating.deviceId === deviceId);
         let allRate = 0;
