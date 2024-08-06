@@ -53,8 +53,7 @@ const CreateRewiew = ({show, onHide,userId,deviceId}) => {
                     allRate = allRate +i.rate 
                     countRate = countRate + 1
                 })
-                const newRating = allRate/countRate;
-                setRatingForDevice(deviceId,newRating)
+                countRate === 0 ? setRatingForDevice(deviceId,0) : setRatingForDevice(deviceId,allRate/countRate)
             }).finally(data=>  setMessage(''))
         })
         onHide()
