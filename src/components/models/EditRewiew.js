@@ -57,7 +57,10 @@ const EditRewiew = observer(({show, onHide,userId,deviceId,curentUserRating}) =>
                 })
                 const newRate = allRate/countRate
                 countRate === 0 ? setRatingForDevice(deviceId,0) : setRatingForDevice(deviceId,newRate)
-            }).finally(data=>  setMessage(''))
+            }).finally(() => {
+                setMessage('');
+                window.location.reload();
+            })
         })
         
         onHideAll()

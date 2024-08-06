@@ -20,9 +20,11 @@ const DeleteRewiew = ({show, onHide,userId,deviceId}) => {
             })
             const newRate = allRate/countRate
             countRate === 0 ? setRatingForDevice(deviceId,0) : setRatingForDevice(deviceId,newRate)
-          })
-        })
-        
+          }).finally(() => {
+              setMessage('');
+              window.location.reload(); 
+            })
+        }) 
     }
     return (
         <Modal
